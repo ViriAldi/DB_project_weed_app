@@ -1,0 +1,43 @@
+<head>
+    <style>
+    ul {
+          display: table;
+          margin: 0 auto;
+        }
+    .container{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <h2>Agronom login</h2>
+    <form name="agronom" method="post">{% csrf_token %}
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="name_agro" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password_agro" required>
+
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+    <h2>Customer login</h2>
+    <form name="customer" method="post">{% csrf_token %}
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="name_custom" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password_custom" required>
+
+            <button type="submit">Login</button>
+        </div>
+    </form>
+</body>

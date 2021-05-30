@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    ul {
+          display: table;
+          margin: 0 auto;
+        }
+    .container{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Make query</h2>
+<form name="qu" method="post">{% csrf_token %}
+    <div class="container">
+        <select name="qu">
+            <option value=1>Для агронома A знайти усiх споживачiв, яким вiн продавав продукт хоча б N разiв за вказаний перiод (з дати F по дату T);</option>
+            <option value=2>для споживачаСзнайти усi продукти, якi вiн придбав за вказаний перiод (з датиFпо датуT);</option>
+            <option value=3>для споживачаСзнайти усiх агрономiв, якi проводили для нього дегустацiю хоча бNразiвза вказаний перiод (з датиFпо датуT);</option>
+            <option value=4>для агрономаАзнайти усiх агрономiв, з якими вiн їздив у вiдрядження протягом вказаногоперiоду (з датиFпо датуT);</option>
+            <option value=5>для споживачаСзнайти усiх агрономiв, якi продали йому хоча б щось та провели для ньогохоча б одну дегустацiю протягом вказаного перiоду (з датиFпо датуT);</option>
+            <option value=6>знайти усiх споживачiв, якi купили щонайменшеNрiзних продуктiв за вказаний перiод (здатиFпо датуT);</option>
+            <option value=7>знайти усiх агрономiв, якi збирали урожай хоча бNрiзних сортiв коноплi за вказанийперiод (з датиFпо датуT);</option>
+            <option value=8>знайти усi спiльнi дегустацiї для споживачаСта агрономаАза вказаний перiод (з датиFпо датуT);</option>
+            <option value=9>для агрономаAта кожного продукту, дегустацiю якого вiн проводив, знайти скiльки ра-зiв за вказаний перiод (з датиFпо датуT) вiн проводив дегустацiю для щонайменшеNспоживачiв;</option>
+            <option value=10>для споживачаСзнайти сумарну кiлькiсть вiдгукiв по мiсяцях, якi вiн залишив за вказанийперiод (з датиFпо датуT);</option>
+            <option value=11>вивести сорти коноплi у порядку спадання середньої кiлькостi вiдряджень, у якi їздилиагрономи, що збирали його урожай хоча бNразiв за вказаний перiод (з датиFпо датуT);</option>
+            <option value=12>вивести продукти, якi були придбанi щонайменшеNрiзними споживачами у порядку спа-дання вiдсотку повернень за вказаний перiод (з датиFпо датуT);</option>
+      </select>
+        <input type="text" placeholder="Enter first date in format YYYY-MM-DD" name="first" required>
+        <input type="text" placeholder="Enter second date in format YYYY-MM-DD" name="second" required>
+        <select name="A">
+          {% for o in ag %}
+            <option value={{o.id}}>{{o.first_name}} {{o.last_name}}</option>
+          {% endfor %}
+        </select>
+        <select name="C">
+          {% for o in ka %}
+            <option value={{o.id}}>{{o.first_name}} {{o.last_name}}</option>
+          {% endfor %}
+        </select>
+        <input type="text" placeholder="Enter N" name="N">
+        <button type="submit">(C)Make</button>
+    </div>
+</form>
+{% if id == 1 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in customers %}
+            <li>
+                {{ o.first_name }} {{ o.last_name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% if id == 2 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in pieces %}
+            <li>
+                {{ o.harvest_id.strain_id.name }} -- {{ o.quantity }} g. -- {{ o.final_price }} UAH
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 3 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in agronoms %}
+            <li>
+                {{ o.first_name }} {{ o.last_name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 4 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in agronomes %}
+            <li>
+                {{ o.first_name }} {{ o.last_name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 5 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in result %}
+            <li>
+                {{ o.first_name }} {{ o.last_name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 6 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in customers %}
+            <li>
+                {{ o.first_name }} {{ o.last_name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 7 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in agronoms %}
+            <li>
+                {{ o.first_name }} {{ o.last_name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 8 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in probs %}
+            <li>
+                {{ o.date }} -- {{ o.harvest.strain_id.name }} -- {{ o.harvest.description}}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 10 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in by_month %}
+            <li>
+                {{ o.month }}/{{o.year}} -- {{ o.val }} times
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 11 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in by_mean %}
+            <li>
+                {{ o.strain.name }} -- {{ o.mean }} avg vacations
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if id == 12 %}
+    <ul>
+        <h2>Results: </h2>
+        {% for o in by_perc %}
+            <li>
+                {{ o.harvest.strain_id.name }} -- {{ o.harvest.description }} -- {{ o.perc }} %
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h2>Go back</h2>
+<form name="add_vac" method="post">{% csrf_token %}
+    <div class="container">
+        <button type="submit" name="back">Back</button>
+    </div>
+</form>
+
+</body>
+</html>

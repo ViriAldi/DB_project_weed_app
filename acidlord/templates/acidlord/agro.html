@@ -1,0 +1,43 @@
+<head>
+    <style>
+        ul {
+          display: table;
+          margin: 0 auto;
+        }
+        .container{
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        }
+        h2 {
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2>Manage vacations</h2>
+<form method="post">{% csrf_token %}
+    <div class="container">
+      <button type="submit" name="vacations">Vacations</button>
+    </div>
+</form>
+<h2>Manage harvests and strains</h2>
+<form method="post">{% csrf_token %}
+    <div class="container">
+      <button type="submit" name="harvest">Harvest</button>
+    </div>
+</form>
+</form>
+<h2>Manage probs</h2>
+<form method="post">{% csrf_token %}
+    <div class="container">
+      <button type="submit" name="prob">Probs</button>
+    </div>
+</form>
+<h2>Statistical queries</h2>
+<form method="post">{% csrf_token %}
+    <div class="container">
+      <button type="submit" name="queries_agro">Statistical queries</button>
+    </div>
+</form>
+</body>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    ul {
+          display: table;
+          margin: 0 auto;
+        }
+    .container{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<ul>
+    <h2>My vacations</h2>
+    {% for o in my_vacations %}
+    <li>
+        <div>
+            {{o.id}} -- {{o.description}}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<ul>
+    <h2>Available vacations</h2>
+    {% for o in available %}
+    <li>
+        <div>
+            {{o.id}} -- {{o.description}}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<h2>Join vacation</h2>
+  <form method="post">{% csrf_token %}
+    <div class="container">
+      <select name="vac">
+          {% for o in available %}
+            <option value={{o.id}}>{{o.description}}</option>
+          {% endfor %}
+      </select>
+      <button type="submit">Select vacation</button>
+    </div>
+</form>
+<h2>Organize vacation</h2>
+<form name="add_vac" method="post">{% csrf_token %}
+    <div class="container">
+        <input type="text" placeholder="Enter date in format YYYY-MM-DD" name=vac_date required>
+        <input type="text" placeholder="Enter description" name=vac_description required>
+        <button type="submit">Add vacation</button>
+    </div>
+</form>
+<h2>Go back</h2>
+<form name="add_vac" method="post">{% csrf_token %}
+    <div class="container">
+        <button type="submit" name="back">Back</button>
+    </div>
+</form>
+</body>
+</html>

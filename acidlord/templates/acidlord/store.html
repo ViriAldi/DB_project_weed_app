@@ -1,0 +1,54 @@
+<head>
+    <style>
+        ul {
+          display: table;
+          margin: 0 auto;
+        }
+
+        .container{
+          text-align: center;
+          display: flex;
+          justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    {% for o in harvest_list %}
+    <li>
+        <div>
+            <h3> {{ o.strain_id.name }} </h3>
+            <p> Description: {{o.description}} </p>
+            <p> Left: {{ o.gen_quantity }} </p>
+            <p> Price: {{ o.unit_price }} / 1 gram </p>
+            <p> Gathered: {{ o.harvest_time }} </p>
+            <p> Valid until: {{ o.shelf_life }} </p>
+            {% load static %}
+            <img src="{% static o.photo %}" alt="My image" width="400" height="400">
+            <form name="buy" method="post">{% csrf_token %}
+                <div class="container">
+                    <input type="text" placeholder="Enter Quantity" name={{ o.id }} required>
+                    <button type="submit">Buy!</button>
+                </div>
+            </form>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<form name="card" method="post">{% csrf_token %}
+    <div class="container">
+        <button type="submit" name="card">Shopping card</button>
+    </div>
+</form>
+<form name="orders" method="post">{% csrf_token %}
+    <div class="container">
+        <button type="submit" name="orders">My orders</button>
+    </div>
+</form>
+<form name="feedback" method="post">{% csrf_token %}
+    <div class="container">
+        <input type="text" placeholder="Enter feedback" name=feedback required>
+        <button type="submit">Send!</button>
+    </div>
+</form>
+</body>

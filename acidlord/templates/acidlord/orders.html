@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    ul {
+          display: table;
+          margin: 0 auto;
+        }
+    .container{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h2> Active orders: </h2>
+    {% for o in active_orders %}
+    <li>
+        <ul>
+            {{o.order.id}} -- {{o.order.delivery_address}} -- {{o.order.order_time}}
+            {% for x in o.card %}
+            <li>
+                {{ x.harvest_id.strain_id.name }} -- {{ x.quantity }} g. -- {{ x.final_price }} UAH
+            </li>
+        {% endfor %}
+        </ul>
+        <form method="post">{% csrf_token %}
+        <div class="container">
+            <button type="submit" name={{o.order.id|add:"100000"}}>Done!</button>
+        </div>
+        </form>
+        <form method="post">{% csrf_token %}
+        <div class="container">
+            <button type="submit" name={{o.order.id}}>Return</button>
+        </div>
+        </form>
+    </li>
+    {% endfor %}
+<h2>Archived orders: </h2>
+    {% for o in archive %}
+    <li>
+        <ul>
+            {{o.order.id}} -- {{o.order.delivery_address}} -- {{o.order.order_time}}
+            {% for x in o.card %}
+            <li>
+                {{ x.harvest_id.strain_id.name }} -- {{ x.quantity }} g. -- {{ x.final_price }} UAH
+            </li>
+        {% endfor %}
+        {% if o.order.returned %}
+            RETURNED
+        {% endif %}
+        </ul>
+    </li>
+    {% endfor %}
+</body>
+</html>

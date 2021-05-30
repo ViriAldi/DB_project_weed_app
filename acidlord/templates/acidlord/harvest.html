@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    ul {
+          display: table;
+          margin: 0 auto;
+        }
+    .container{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<h2>Gather new harvest</h2>
+<form name="harvest" method="post">{% csrf_token %}
+    <div class="container">
+        <input type="text" placeholder="Enter strain name" name=harvest_strain_name required>
+        <input type="text" placeholder="Enter quantity" name=quantity required>
+        <input type="text" placeholder="Enter unit price" name=price required>
+        <input type="text" placeholder="Enter shelf time" name=shelf required>
+        <input type="text" placeholder="Enter description" name=description required>
+        <input type="text" placeholder="Enter photo url" name=photo required>
+        <button type="submit">Add harvest</button>
+    </div>
+</form>
+<h2>Register new strain</h2>
+<form name="strain" method="post">{% csrf_token %}
+    <div class="container">
+        <input type="text" placeholder="Enter strain name" name=strain_name required>
+        <input type="text" placeholder="Enter strain description" name=strain_description required>
+        <button type="submit">Add strain</button>
+    </div>
+</form>
+<h2>Go back</h2>
+<form name="add_vac" method="post">{% csrf_token %}
+    <div class="container">
+        <button type="submit" name="back">Back</button>
+    </div>
+</form>
+</body>
+</html>

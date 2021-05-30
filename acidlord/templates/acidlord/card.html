@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    ul {
+          display: table;
+          margin: 0 auto;
+        }
+    .container{
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+<ul>
+    {% for o in card_list %}
+    <li>
+        <div>
+            {{ o.harvest_id.strain_id.name }} -- {{ o.quantity }} g. -- {{ o.final_price }} UAH
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<form name="order" method="post">{% csrf_token %}
+    <div class="container">
+        <input type="text" placeholder="Enter address" name=address required>
+        <button type="submit">Order</button>
+    </div>
+</form>
+</body>
+</html>
