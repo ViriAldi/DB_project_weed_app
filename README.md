@@ -9,8 +9,8 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py runserver
 ```
-Use <localhost>/admin to manage database, create users, etc
-Use <localhost>/acidlord/login to log in (as customer or as agronom)
+Use ```<localhost>/admin``` to manage database, create users, etc
+Use ```<localhost>/acidlord/login``` to log in (as customer or as agronom)
 
 ## Demo
 
