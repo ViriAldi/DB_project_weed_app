@@ -16,4 +16,4 @@ Use <localhost>/acidlord/login to log in (as customer or as agronom)
 
 You can find video on Youtube:
 
-<link>
+https://youtu.be/KaFPQTKum2E
